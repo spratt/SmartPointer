@@ -19,6 +19,12 @@
 using namespace smart_ptr;
 
 template <class T>
+SmartPointer<T>::SmartPointer()
+  : _address(NULL), _references(NULL)
+{
+}
+
+template <class T>
 SmartPointer<T>::SmartPointer(T* a)
   : _address(a), _references(new int(0))
 {
@@ -49,11 +55,17 @@ SmartPointer<T>::~SmartPointer() {
 
 template <class T>
 void SmartPointer<T>::incReferences() {
+  if(_references == NULL)
+    return;
+  
   ++(*_references);
 }
 
 template <class T>
 void SmartPointer<T>::decReferences() {
+  if(_references == NULL)
+    return;
+  
   --(*_references);
 
   // no more references
@@ -65,7 +77,32 @@ void SmartPointer<T>::decReferences() {
 
 template <class T>
 T& SmartPointer<T>::operator*() {
+  if(_address == NULL)
+    throw "Tried to dereference a NULL pointer";
+  
   return *_address;
+}
+
+template <class T>
+bool SmartPointer<T>::operator==(const SmartPointer<T>& other) {
+  return _address == other._address;
+}
+
+template <class T>
+bool SmartPointer<T>::operator==(const T* other) {
+  return _address == other;
+}
+
+template <class T>
+bool SmartPointer<T>::operator!=(const SmartPointer<T>& other) {
+  // defer to == operator
+  return !(this->operator==(other));
+}
+
+template <class T>
+bool SmartPointer<T>::operator!=(const T* other) {
+  // defer to == operator
+  return !(this->operator==(other));
 }
 
 #endif

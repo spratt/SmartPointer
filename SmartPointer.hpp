@@ -22,15 +22,22 @@
 #ifndef SMARTPOINTER_HPP
 #define SMARTPOINTER_HPP
 
+#include <cstddef>
+
 namespace smart_ptr {
   template <class T>
   class SmartPointer{
   public:
+    SmartPointer(void);
     SmartPointer(T* address);
     SmartPointer(SmartPointer<T>& toCopy);
     ~SmartPointer();
     const SmartPointer& operator=(SmartPointer<T>& toCopy);
     T& operator*();
+    bool operator==(const SmartPointer<T>& other);
+    bool operator==(const T* other);
+    bool operator!=(const SmartPointer<T>& other);
+    bool operator!=(const T* other);
   private:
     T* _address;
     int* _references;
