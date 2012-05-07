@@ -1,0 +1,10 @@
+======================================================================
+Smart Pointers
+By Simon David Pratt
+======================================================================
+
+These are C++ pointers which store the address of an object, and count
+references to that object.  When the reference count drops to zero,
+the object is automatically deallocated.
+
+See LICENSE file for license information.
