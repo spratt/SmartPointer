@@ -84,6 +84,14 @@ T& SmartPointer<T>::operator*() {
 }
 
 template <class T>
+T* SmartPointer<T>::operator->() {
+  if(_address == NULL)
+    throw "Tried to dereference a NULL pointer";
+
+  return _address;
+}
+
+template <class T>
 bool SmartPointer<T>::operator==(const SmartPointer<T>& other) {
   return _address == other._address;
 }

@@ -34,6 +34,7 @@ namespace smart_ptr {
     ~SmartPointer();
     const SmartPointer& operator=(SmartPointer<T>& toCopy);
     T& operator*();
+    T* operator->();
     bool operator==(const SmartPointer<T>& other);
     bool operator==(const T* other);
     bool operator!=(const SmartPointer<T>& other);
