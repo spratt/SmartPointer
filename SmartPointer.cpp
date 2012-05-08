@@ -39,6 +39,22 @@ SmartPointer<T>::SmartPointer(SmartPointer<T>& toCopy)
 }
 
 template <class T>
+SmartPointer<T>::SmartPointer(const SmartPointer<T>& toCopy)
+  : _address(toCopy._address), _references(toCopy._references)
+{
+  incReferences();
+}
+
+template <class T>
+const SmartPointer<T>& SmartPointer<T>::operator=(T* address) {
+  decReferences();
+  _address = address;
+  _references = 0;
+  incReferences();
+  return *this;
+}
+
+template <class T>
 const SmartPointer<T>& SmartPointer<T>::operator=(SmartPointer<T>& toCopy) {
   decReferences();
   _address = toCopy._address;

@@ -36,6 +36,13 @@ int main(int argc, char** argv) {
   assert(nullPtr == NULL);
   cout << "success." << endl;
 
+  cout << "Creating a null pointer from address...";
+  SmartPointer<int> nullPtr2 = NULL;
+  assert(nullPtr2 == NULL);
+  nullPtr2 = NULL;
+  assert(nullPtr2 == NULL);
+  cout << "success." << endl;
+
   cout << "Creating a vector pointer...";
   SmartPointer<vector<int> > vectorPtr(new vector<int>());
   assert(vectorPtr->empty());

@@ -31,7 +31,9 @@ namespace smart_ptr {
     SmartPointer(void);
     SmartPointer(T* address);
     SmartPointer(SmartPointer<T>& toCopy);
+    SmartPointer(const SmartPointer<T>& toCopy);
     ~SmartPointer();
+    const SmartPointer& operator=(T* address);
     const SmartPointer& operator=(SmartPointer<T>& toCopy);
     T& operator*();
     T* operator->();
