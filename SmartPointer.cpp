@@ -87,7 +87,8 @@ void SmartPointer<T>::decReferences() {
   // no more references
   if((*_references) < 1) {
     delete _references;
-    delete _address;
+    if(_address != NULL)
+      delete _address;
   }
 }
 
